@@ -23,7 +23,8 @@ public class EmailService {
 		this.mailSender = mailSender;
 	}
 	
-	public void sendEmail(EmailModel em) {
+	@SuppressWarnings("finally")
+	public EmailModel sendEmail(EmailModel em) {
 		em.setSendDateEmail(LocalDateTime.now());
 		
 		try {
@@ -38,8 +39,9 @@ public class EmailService {
 			em.setStatusEmail(StatusEmail.SENT);
 		} catch (MailException e) {
 			e.printStackTrace();
+			em.setStatusEmail(StatusEmail.ERROR);
 		}finally {
-			repository.save(em);
+			return repository.save(em);
 		}
 		
 	}
