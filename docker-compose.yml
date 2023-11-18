@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  # ====================================================================================================================
+  # POSTGRES SERVER
+  # ====================================================================================================================
+  postgres:
+    image: postgres:14-alpine
+    container_name: dev-postgresql-ms-email
+    environment:
+      POSTGRES_DB: ms-email
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5433:5432
+    volumes:
+      - ./.data/postgresql/data:/var/lib/postgresql/ms-email
