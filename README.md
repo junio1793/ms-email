@@ -8,3 +8,4 @@ Postgres
 Spring boot
 JavaMailSender
 RabbitMQ
+Docker compose
